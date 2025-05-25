@@ -113,7 +113,7 @@ fetch("https://your-backend.onrender.com/ask", { ... })
 
 ## ✅ Deployment URLs
 
-- **Frontend (Vercel)**: [https://your-frontend.vercel.app](https://your-frontend.vercel.app)
+- **Frontend (Vercel)**: [https://vercel.com/oluwaseguns-projects-ea5ae3f0/chat-ui/B8gDkxnF971dgMUJ2HkjHqyvQHoG](https://vercel.com/oluwaseguns-projects-ea5ae3f0/chat-ui/B8gDkxnF971dgMUJ2HkjHqyvQHoG)
 - **Backend (Render)**: [https://alberta11.onrender.com](https://alberta11.onrender.com)
 - **API Docs (Swagger)**: [https://alberta11.onrender.com/docs](https://alberta11.onrender.com/docs)
 
@@ -141,7 +141,7 @@ chat-ui/
 
 ##Credits
 
-This project was built by Oluwasegun Oyeniyi as part of a GenAI Engineer technical challenge. Development was supported by AI tools for code generation, planning, and deployment guidance. Every implementation step was reviewed, adapted, and validated manually.
+Oluwasegun Oyeniyi built this project as part of a GenAI Engineer technical challenge. Development was supported by AI tools for code generation, planning, and deployment guidance. Every implementation step was reviewed, adapted, and validated manually.
 
 ---
 
@@ -149,4 +149,4 @@ This project was built by Oluwasegun Oyeniyi as part of a GenAI Engineer technic
 
 - Supabase RLS was disabled to allow unrestricted insert access during MVP development
 - Platform-specific packages (`pywin32`, `WMI`) were removed for deployment compatibility
-- This is an MVP focused on core functionality — not all optional features (like image extraction or memory) were implemented
+- This is an MVP focused on core functionality, not all optional features (like image extraction or memory) were implemented
