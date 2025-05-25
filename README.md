@@ -1,114 +1,152 @@
-# Technical Interview - Sample RAG Project
+# Alberta Perspectives – RAG Chatbot MVP
 
-## Project Context
+This project is a Retrieval-Augmented Generation (RAG) prototype designed for AlbertaPerspectives.ca. It allows users to ask natural language questions about economic reports and receive AI-generated answers based on context retrieved from stored documents.
 
-[AlbertaPerspectives.ca](http://AlbertaPerspectives.ca) is an insight community that collects economic data from business owners across Alberta. This technical challenge involves building a prototype for their on-demand economic research chatbot system.
+The project was built using a modular, phase-based approach with AI-assisted development, and is deployed fully online via Render (backend) and Vercel (frontend).
 
-The system will allow businesses to query existing research through an AI-powered chat interface, making valuable economic insights more accessible to the Alberta business community.
+---
 
-## Challenge Description (180 minutes)
+## Features
 
-You will build a RAG system prototype that demonstrates the core functionality of the full project. Your implementation should showcase how you would approach:
+- PDF-to-vector pipeline for economic documents
+- Supabase database with vector search (`vector(1536)`)
+- FastAPI backend for semantic search + LLM integration
+- Chat interface built with Next.js, TailwindCSS, and Shadcn/UI
+- Fully deployed frontend/backend
+- User can query and receive responses with context from reports
 
-1. Processing PowerPoint reports from Alberta Perspectives (sample files provided)
-2. Extracting and vectorizing content for efficient retrieval
-3. Storing data and embeddings in Supabase
-4. Implementing semantic search and context retrieval
-5. Integrating with an LLM for answer generation
-6. Creating a clean, user-friendly chat interface
+---
 
-## Technical Requirements
+## 📁 Tech Stack
 
-### Database & Schema (Supabase)
+| Layer          | Tech                         |
+|----------------|------------------------------|
+| Frontend       | Next.js, TailwindCSS, Shadcn |
+| Backend        | FastAPI, OpenAI              |
+| Database       | Supabase (PostgreSQL + vectors) |
+| Embeddings     | `text-embedding-ada-002`     |
+| Deployment     | Vercel (frontend), Render (backend) |
 
-- Design a database architecture, for the vector and/or non-vector database as required
+---
 
-### Document Processing
+## 🏗️ System Architecture
 
-- Extract text from PowerPoint files
-- Generate vector embeddings
-- Store in Supabase
-- (Optional) Handle images and graphs if time permits
+```
+User → Vercel (Frontend) → Render (FastAPI) → Supabase (DB) + OpenAI → Answer
+```
 
-### RAG Pipeline
+- PDF files are processed and split into chunks
+- Each chunk is embedded and stored in Supabase
+- User queries are embedded and matched against stored chunks
+- Relevant context is passed to OpenAI for answer generation
+- Response is returned to the user via chat UI
 
-- Implement similarity search for context retrieval
-- Integrate with your choice of LLM (e.g., OpenAI)
-- Generate context-aware responses
-- (Optional) Implement confidence scoring
+---
 
-### Frontend Interface
+## Setup Instructions (Local Development)
 
-- Build a minimal chat interface
-- Support for:
-  - User query input
-  - Response display
-  - (Optional) Conversation history
+### 1. Clone the Backend
 
-## What We're Looking For
+```bash
+git clone https://github.com/your-username/Olu-tech-interview-genai-engineer.git
+cd Olu-tech-interview-genai-engineer
+```
+I renamed the original repo which was tech-interview-genai-engineer.git
 
-### Technical Implementation (55%)
+### 2. Install dependencies
 
-- Successful document processing and text extraction
-- Effective vector operations and embeddings
-- Working RAG pipeline with relevant context retrieval
-- Functional chat interface with good UX
+```bash
+pip install -r requirements.txt
+```
 
-### System Architecture (15%)
+### 3. Set up `.env` file
 
-- Well-designed database schema
-- Robust error handling
-- Scalable system design
+Create a `.env` file based on `.env.template`:
 
-### Code Quality (15%)
+```env
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_public_key
+SUPABASE_SECRET=your_service_role_key
+OPENAI_API_KEY=your_openai_key
+```
 
-- Clean, well-organized code
-- Clear documentation
-- Proper error handling
-- Appropriate use of data structures
+### 4. Process documents
 
-### Problem Solving & Communication (15%)
+```bash
+python process_documents.py
+```
 
-- Clear technical communication
-- Effective time management
-- Sound decision-making
+### 5. Start backend API
 
-## Getting Started
+```bash
+uvicorn rag_api:app --reload
+```
 
-1. Review the sample PowerPoint files in `data_samples/`
-2. Set up your Supabase project using `.env.template`
-3. Implement the core RAG pipeline
-4. Create the chat interface
-5. Document your approach in `approach.md`
-6. Deploy the project on Vercel and respond with a vercel link.
+---
 
-## Repository Contents
+### 6. Clone the Frontend
 
-- `data_samples/`: Sample PowerPoint files with economic data
-- `evaluation_criteria.md`: Detailed evaluation criteria
-- `approach.md`: Document your technical approach here
-- `.env.template`: Template for required environment variables
+```bash
+git clone https://github.com/your-username/chat-ui.git
+cd chat-ui
+```
 
-## Expected Deliverables
+### 7. Install dependencies
 
-1. Vercel link for the working prototype demonstrating:
-   - PowerPoint processing pipeline
-   - Supabase integration with vector storage
-   - RAG-powered chat interface
-2. Code pushed back to Github, with documentation including:
-   - System architecture overview
-   - Database schema design
-   - Setup instructions
-   - Discussion of trade-offs and potential improvements
+```bash
+npm install
+```
 
-## Rules and Guidelines
+### 8. Run the frontend
 
-- You may use anything that helps you complete the task
-- Feel free to use AI tools to assist your development
-- You can ask clarifying questions at any time
-- Focus on core functionality first
-- Document any assumptions you make
-- Time management is crucial - prioritize MVP features
-- Do your best. If you don't finish, push the progress that you've made and explain how you would go about completing the project.
+```bash
+npm run dev
+```
 
-Good luck with the challenge! We're excited to see your solution.
+Edit `pages/index.tsx` to point to your Render backend URL:
+
+```ts
+fetch("https://your-backend.onrender.com/ask", { ... })
+```
+
+---
+
+## ✅ Deployment URLs
+
+- **Frontend (Vercel)**: [https://your-frontend.vercel.app](https://your-frontend.vercel.app)
+- **Backend (Render)**: [https://alberta11.onrender.com](https://alberta11.onrender.com)
+- **API Docs (Swagger)**: [https://alberta11.onrender.com/docs](https://alberta11.onrender.com/docs)
+
+---
+
+## 📦 Project Structure
+
+```
+Olu-tech-interview-genai-engineer/
+├── rag_api.py            # FastAPI backend
+├── process_documents.py  # PDF chunking + embedding
+├── requirements.txt
+├── .env.template
+└── README.md
+
+chat-ui/
+├── pages/
+│   └── index.tsx         # Chat interface
+├── components/
+├── public/
+└── tailwind.config.js
+```
+
+---
+
+##Credits
+
+This project was built by Oluwasegun Oyeniyi as part of a GenAI Engineer technical challenge. Development was supported by AI tools for code generation, planning, and deployment guidance. Every implementation step was reviewed, adapted, and validated manually.
+
+---
+
+## Notes
+
+- Supabase RLS was disabled to allow unrestricted insert access during MVP development
+- Platform-specific packages (`pywin32`, `WMI`) were removed for deployment compatibility
+- This is an MVP focused on core functionality — not all optional features (like image extraction or memory) were implemented
