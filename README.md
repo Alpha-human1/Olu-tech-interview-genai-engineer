@@ -113,8 +113,8 @@ fetch("https://your-backend.onrender.com/ask", { ... })
 
 ## ✅ Deployment URLs
 
-- **Frontend (Vercel)**: [https://vercel.com/oluwaseguns-projects-ea5ae3f0/chat-ui/B8gDkxnF971dgMUJ2HkjHqyvQHoG](https://vercel.com/oluwaseguns-projects-ea5ae3f0/chat-ui/B8gDkxnF971dgMUJ2HkjHqyvQHoG)
-- **Backend (Render)**: [https://alberta11.onrender.com](https://alberta11.onrender.com)
+- **Frontend (Vercel)**: [Chat Frontend](https://chat-ui-gules-gamma.vercel.app/)
+- **Backend (Render)**: [Backend](https://alberta11.onrender.com)
 - **API Docs (Swagger)**: [https://alberta11.onrender.com/docs](https://alberta11.onrender.com/docs)
 
 ---
